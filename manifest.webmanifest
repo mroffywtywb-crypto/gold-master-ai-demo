@@ -1,11 +1,28 @@
 {
+  "id": "./",
   "name": "GOLD MASTER AI",
   "short_name": "GOLD MASTER",
   "lang": "fa",
   "dir": "rtl",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#0b1220",
   "theme_color": "#101827",
-  "description": "شبیه‌ساز آموزشی معاملات مجازی طلا"
+  "description": "شبیه‌ساز آموزشی معاملات مجازی طلا",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
 }
