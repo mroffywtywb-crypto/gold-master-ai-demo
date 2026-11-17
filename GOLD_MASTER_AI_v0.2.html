@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1220">
+<title>GOLD MASTER AI — آزمایشگاه استراتژی طلا</title>
+<style>
+:root{--bg:#09111d;--panel:#111d2d;--panel2:#17263a;--line:#293b53;--txt:#edf3fc;--muted:#9aacc3;--gold:#e7b84b;--green:#39cf91;--red:#ff6876;--blue:#78aaff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#18283d 0,#09111d 58%);color:var(--txt);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1120px;margin:auto;padding:18px 16px 42px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}.brand{font-weight:950;letter-spacing:1px;color:var(--gold);font-size:22px}.sub{font-size:12px;color:var(--muted);margin-top:4px}.demo{border:1px solid #745d2d;color:#ffe3a0;padding:7px 12px;border-radius:20px;font-size:11px}
+.notice{background:#302817;border:1px solid #6e5727;color:#ffe3a0;padding:11px 14px;border-radius:13px;font-size:12px;line-height:1.8;margin-bottom:14px}
+nav{display:flex;gap:7px;overflow:auto;padding:4px 0 12px}nav button{white-space:nowrap;background:#1a2a40;color:var(--muted);padding:10px 14px;border:1px solid var(--line);font-size:13px}nav button.active{background:#5a4823;color:#ffe2a0;border-color:#94712d}
+button{border:0;border-radius:11px;padding:11px 14px;font-weight:800;font-size:13px;cursor:pointer;background:var(--gold);color:#101722}button.secondary{background:#293b53;color:var(--txt)}button.green{background:#176344;color:#d9ffed}button.red{background:#702b37;color:#ffe4e7}button:disabled{opacity:.4;cursor:not-allowed}
+.page{display:none}.page.active{display:block}.card{background:linear-gradient(145deg,var(--panel),#0f1927);border:1px solid var(--line);border-radius:16px;padding:15px;margin:10px 0;box-shadow:0 8px 24px #0002}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{background:var(--panel2);border:1px solid #25374d;border-radius:13px;padding:13px;min-width:0}.label{font-size:11px;color:var(--muted)}.value{font-size:21px;font-weight:850;margin-top:7px;overflow-wrap:anywhere}.gold{color:var(--gold)}.greenText{color:var(--green)}.redText{color:var(--red)}.muted{color:var(--muted)}.sectionTitle{font-weight:850;margin-bottom:12px}.row{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid #26384e;font-size:13px}.row:last-child{border-bottom:0}.formgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:11px;color:var(--muted)}input,select{width:100%;background:#0b1523;color:var(--txt);border:1px solid #33475f;border-radius:10px;padding:11px;font:inherit;min-width:0}input[type=file]{padding:8px;font-size:12px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.small{font-size:11px;color:var(--muted);line-height:1.8}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:720px;font-size:12px}th,td{text-align:right;padding:11px 9px;border-bottom:1px solid #293b53;white-space:nowrap}th{color:var(--muted);font-weight:700;background:#142236}td{color:#e5edf8}.badge{display:inline-block;padding:4px 8px;border-radius:8px;font-size:10px;font-weight:800}.buy{background:#123c30;color:#7de6b8}.sell{background:#49252c;color:#ff9ca5}.open{background:#3d3520;color:#f4d47b}.chartbox{height:280px;position:relative}.chartbox canvas{width:100%;height:100%;display:block}.empty{text-align:center;color:var(--muted);padding:22px;font-size:12px}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.hidden{display:none!important}.pill{border:1px solid var(--line);padding:5px 9px;border-radius:20px;color:var(--muted);font-size:10px}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr)}.formgrid{grid-template-columns:repeat(2,1fr)}.value{font-size:18px}.two{grid-template-columns:1fr}}
+@media(max-width:420px){main{padding:12px}.formgrid{grid-template-columns:1fr 1fr}.brand{font-size:19px}}
+</style></head>
+<body><main>
+<header class="top"><div><div class="brand">GOLD MASTER AI</div><div class="sub">آزمایشگاه تست استراتژی فارکس · XAUUSD</div></div><span class="demo">PAPER TRADING · DEMO ONLY</span></header>
+<div class="notice">این برنامه فقط برای بک‌تست و معاملات مجازی است؛ به بروکر یا MT5 وصل نیست و سفارش واقعی ارسال نمی‌کند. برای نتیجه معتبر، داده تاریخی واقعی XAUUSD وارد کنید. سیگنال پیش‌فرض EMA صرفاً نمونه آموزشی است، نه توصیه معاملاتی.</div>
+<nav>
+<button class="active" data-page="dashboard">داشبورد</button><button data-page="trade">معامله مجازی</button><button data-page="history">تاریخچه</button><button data-page="backtest">بک‌تست استراتژی</button><button data-page="settings">تنظیمات</button>
+</nav>
+<section id="dashboard" class="page active">
+<div class="grid">
+<div class="metric"><div class="label">موجودی مجازی</div><div class="value gold" id="balance">$10,000.00</div></div>
+<div class="metric"><div class="label">سود / زیان بسته‌شده</div><div class="value" id="net">$0.00</div></div>
+<div class="metric"><div class="label">درصد معاملات موفق</div><div class="value" id="winrate">—</div></div>
+<div class="metric"><div class="label">معاملات بسته‌شده</div><div class="value" id="closedCount">0</div></div>
+<div class="metric"><div class="label">معاملات باز</div><div class="value" id="openCount">0</div></div>
+<div class="metric"><div class="label">سود ناخالص</div><div class="value greenText" id="grossWin">$0.00</div></div>
+<div class="metric"><div class="label">ضرر ناخالص</div><div class="value redText" id="grossLoss">$0.00</div></div>
+<div class="metric"><div class="label">Profit Factor</div><div class="value" id="pf">—</div></div>
+</div>
+<div class="card"><div class="row"><strong>وضعیت بازار / داده</strong><span class="pill" id="dataStatus">داده‌ای وارد نشده</span></div><div class="chartbox"><canvas id="chart"></canvas></div><div class="small" id="chartNote">برای مشاهده نمودار، فایل CSV کندل‌های XAUUSD را در بخش بک‌تست وارد کنید.</div></div>
+<div class="card"><div class="sectionTitle">معاملات باز</div><div id="openList" class="empty">در حال حاضر معامله بازی وجود ندارد.</div></div>
+</section>
+<section id="trade" class="page">
+<div class="card"><div class="sectionTitle">ثبت معامله مجازی دستی</div><div class="formgrid">
+<div class="field"><label>نماد</label><input id="symbol" value="XAUUSD"></div>
+<div class="field"><label>جهت معامله</label><select id="side"><option value="BUY">BUY — خرید</option><option value="SELL">SELL — فروش</option></select></div>
+<div class="field"><label>قیمت ورود</label><input id="entry" type="number" step="0.01" placeholder="مثلاً 2350.00"></div>
+<div class="field"><label>حجم (لات)</label><input id="lots" type="number" min="0.01" step="0.01" value="0.01"></div>
+<div class="field"><label>حد ضرر (قیمت)</label><input id="sl" type="number" step="0.01" placeholder="اختیاری"></div>
+<div class="field"><label>حد سود (قیمت)</label><input id="tp" type="number" step="0.01" placeholder="اختیاری"></div>
+<div class="field"><label>قیمت فعلی / خروج</label><input id="exitPrice" type="number" step="0.01" placeholder="برای بستن معامله"></div>
+<div class="field"><label>کمیسیون هر لات (دلار)</label><input id="commission" type="number" min="0" step="0.1" value="0"></div>
+<div class="field"><label>اسپرد (واحد قیمت)</label><input id="spread" type="number" min="0" step="0.01" value="0"></div>
+</div><div class="actions"><button id="openTrade">ثبت خرید / فروش مجازی</button></div><p class="small">برای سادگی محاسبه XAUUSD، ارزش هر 1.00 حرکت قیمت در یک لات برابر 100 دلار فرض شده است؛ مشخصات قرارداد بروکر خود را در صورت تفاوت بررسی کنید. اسپرد و کمیسیون در محاسبه تقریبی لحاظ می‌شوند.</p></div>
+<div class="card"><div class="sectionTitle">بستن معامله باز</div><div class="formgrid"><div class="field"><label>شناسه معامله</label><select id="closeId"></select></div><div class="field"><label>قیمت خروج</label><input id="manualExit" type="number" step="0.01" placeholder="قیمت خروج"></div></div><div class="actions"><button class="green" id="closeTrade">بستن معامله انتخاب‌شده</button></div></div>
+</section>
+<section id="history" class="page">
+<div class="card"><div class="row"><strong>تاریخچه کامل معاملات</strong><span class="pill" id="historyCount">0 رکورد</span></div><div class="actions"><button class="secondary" id="exportCsv">خروجی CSV</button><button class="secondary" id="exportJson">پشتیبان JSON</button><button class="red" id="clearHistory">پاک‌کردن تاریخچه</button></div><div class="tablewrap"><table><thead><tr><th>شناسه</th><th>نماد</th><th>جهت</th><th>ورود</th><th>خروج</th><th>لات</th><th>زمان ورود</th><th>زمان خروج</th><th>سود/ضرر $</th><th>وضعیت</th></tr></thead><tbody id="historyBody"></tbody></table></div><div id="historyEmpty" class="empty">هنوز معامله‌ای ثبت نشده است.</div></div>
+</section>
+<section id="backtest" class="page">
+<div class="card"><div class="sectionTitle">ورود داده تاریخی XAUUSD</div><div class="field"><label>فایل CSV کندل‌ها (ستون‌های time/date و close الزامی؛ open/high/low اختیاری)</label><input type="file" id="csvFile" accept=".csv,text/csv"></div><div class="small">هر ردیف باید یک کندل باشد. نمونه سرستون: time,open,high,low,close یا date,close. فایل را از منبع داده معتبر یا خروجی پلتفرم معاملاتی تهیه کنید.</div><div class="row"><span>تعداد کندل‌های بارگذاری‌شده</span><strong id="candleCount">0</strong></div></div>
+<div class="card"><div class="sectionTitle">تنظیمات استراتژی نمونه EMA Crossover</div><div class="formgrid">
+<div class="field"><label>EMA سریع</label><input id="fastEma" type="number" min="2" value="9"></div>
+<div class="field"><label>EMA کند</label><input id="slowEma" type="number" min="3" value="21"></div>
+<div class="field"><label>سرمایه شروع بک‌تست ($)</label><input id="btBalance" type="number" min="1" value="10000"></div>
+<div class="field"><label>ریسک هر معامله (%)</label><input id="riskPct" type="number" min="0.1" max="10" step="0.1" value="1"></div>
+<div class="field"><label>حد ضرر (%)</label><input id="btSl" type="number" min="0.1" step="0.1" value="1"></div>
+<div class="field"><label>حد سود به ریسک (R)</label><input id="btRR" type="number" min="0.1" step="0.1" value="2"></div>
+<div class="field"><label>اسپرد قیمت</label><input id="btSpread" type="number" min="0" step="0.01" value="0.30"></div>
+<div class="field"><label>کمیسیون هر لات ($)</label><input id="btComm" type="number" min="0" step="0.1" value="0"></div>
+</div><div class="actions"><button id="runBacktest">اجرای بک‌تست</button><button class="secondary" id="saveBacktestTrades">افزودن معاملات بک‌تست به تاریخچه</button></div><div class="small">منطق نمونه: تقاطع EMA سریع و کند؛ ورود در بسته‌شدن کندل سیگنال و خروج با حد ضرر، حد سود یا سیگنال مخالف. این فقط یک قالب آزمایشی است و هنوز استراتژی اختصاصی شما نیست.</div></div>
+<div id="btResults" class="card hidden"><div class="sectionTitle">نتیجه بک‌تست</div><div class="grid">
+<div class="metric"><div class="label">سود/ضرر خالص</div><div class="value" id="btNet">$0</div></div><div class="metric"><div class="label">درصد موفقیت</div><div class="value" id="btWin">0%</div></div><div class="metric"><div class="label">تعداد معاملات</div><div class="value" id="btTrades">0</div></div><div class="metric"><div class="label">بیشترین افت سرمایه</div><div class="value" id="btDd">0%</div></div><div class="metric"><div class="label">Profit Factor</div><div class="value" id="btPf">—</div></div><div class="metric"><div class="label">موجودی پایانی</div><div class="value" id="btFinal">$0</div></div></div><div class="tablewrap"><table><thead><tr><th>جهت</th><th>ورود</th><th>خروج</th><th>سود/ضرر</th><th>دلیل خروج</th></tr></thead><tbody id="btBody"></tbody></table></div></div>
+</section>
+<section id="settings" class="page">
+<div class="card"><div class="sectionTitle">تنظیمات حساب مجازی</div><div class="formgrid"><div class="field"><label>موجودی اولیه ($)</label><input id="initialBalance" type="number" min="1" value="10000"></div><div class="field"><label>ارزش دلاری حرکت 1.00 در هر لات</label><input id="contractValue" type="number" min="0.01" step="0.01" value="100"></div></div><div class="actions"><button id="saveSettings">ذخیره تنظیمات</button><button class="secondary" id="resetAccount">بازنشانی حساب مجازی</button></div><p class="small">اطلاعات معاملات در حافظه محلی همین مرورگر ذخیره می‌شود. پاک‌کردن داده‌های مرورگر یا استفاده از دستگاه دیگر ممکن است تاریخچه را حذف کند؛ مرتباً فایل پشتیبان بگیرید.</p></div>
+<div class="card"><div class="sectionTitle">راهنمای شروع</div><div class="row"><span>۱. داده تاریخی</span><span class="muted">CSV واقعی XAUUSD وارد کنید</span></div><div class="row"><span>۲. قوانین استراتژی</span><span class="muted">پارامترها را تنظیم و بک‌تست کنید</span></div><div class="row"><span>۳. معاملات مجازی</span><span class="muted">ورود و خروج را دستی ثبت کنید</span></div><div class="row"><span>۴. ارزیابی</span><span class="muted">افت سرمایه و سود خالص را بسنجید</span></div></div>
+</section>
+<footer class="small" style="text-align:center;margin-top:18px">GOLD MASTER AI · نسخه آزمایشگاه 0.2 · فقط شبیه‌سازی · بدون سفارش واقعی</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id), KEY='goldMasterAI_v02';
+let state={initial:10000,contract:100,trades:[],candles:[]},btTrades=[];
+const money=n=>(n<0?'-$':'$')+Math.abs(n).toFixed(2),fmt=n=>Number(n).toFixed(2),stamp=()=>new Date().toLocaleString('fa-IR');
+function load(){try{const x=JSON.parse(localStorage.getItem(KEY));if(x)state={...state,...x};}catch(e){}}
+function save(){localStorage.setItem(KEY,JSON.stringify(state));}
+function closed(){return state.trades.filter(t=>t.status==='CLOSED')}
+function net(){return closed().reduce((s,t)=>s+t.pnl,0)}
+function equity(){return state.initial+net()}
+function stats(){let c=closed(),w=c.filter(t=>t.pnl>0),l=c.filter(t=>t.pnl<0),gw=w.reduce((s,t)=>s+t.pnl,0),gl=Math.abs(l.reduce((s,t)=>s+t.pnl,0));return {c,w,l,gw,gl,wr:c.length?w.length/c.length*100:0,pf:gl?gw/gl:(gw?Infinity:0)}}
+function render(){
+let s=stats();$('balance').textContent=money(equity());$('net').textContent=money(net());$('net').className='value '+(net()>=0?'greenText':'redText');$('winrate').textContent=s.c.length?s.wr.toFixed(1)+'%':'—';$('closedCount').textContent=s.c.length;$('openCount').textContent=state.trades.filter(t=>t.status==='OPEN').length;$('grossWin').textContent=money(s.gw);$('grossLoss').textContent=money(-s.gl);$('pf').textContent=s.pf===Infinity?'∞':s.c.length?s.pf.toFixed(2):'—';
+let op=state.trades.filter(t=>t.status==='OPEN');$('openList').innerHTML=op.length?op.map(t=>`<div class="row"><span>#${t.id} · ${t.symbol} · <b class="${t.side==='BUY'?'greenText':'redText'}">${t.side}</b> · ورود ${fmt(t.entry)}</span><button class="secondary" onclick="quickClose(${t.id})">بستن</button></div>`).join(''):'در حال حاضر معامله بازی وجود ندارد.';
+$('closeId').innerHTML=op.map(t=>`<option value="${t.id}">#${t.id} · ${t.side} · ${fmt(t.entry)}</option>`).join('');$('historyCount').textContent=state.trades.length+' رکورد';$('historyEmpty').classList.toggle('hidden',!!state.trades.length);
+$('historyBody').innerHTML=state.trades.slice().reverse().map(t=>`<tr><td>#${t.id}</td><td>${esc(t.symbol)}</td><td><span class="badge ${t.side==='BUY'?'buy':'sell'}">${t.side}</span></td><td>${fmt(t.entry)}</td><td>${t.exit==null?'—':fmt(t.exit)}</td><td>${t.lots}</td><td>${esc(t.opened)}</td><td>${esc(t.closedAt||'—')}</td><td class="${t.pnl==null?'':t.pnl>=0?'greenText':'redText'}">${t.pnl==null?'—':money(t.pnl)}</td><td><span class="badge ${t.status==='OPEN'?'open':'buy'}">${t.status==='OPEN'?'باز':'بسته'}</span></td></tr>`).join('');
+$('candleCount').textContent=state.candles.length;$('dataStatus').textContent=state.candles.length?state.candles.length+' کندل بارگذاری شد':'داده‌ای وارد نشده';drawChart();
+}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function calcPnl(t,exit){let direction=t.side==='BUY'?1:-1,move=(exit-t.entry)*direction;let gross=move*t.lots*state.contract;let costs=(Number(t.commission)||0)*t.lots*2+(Number(t.spread)||0)*t.lots*state.contract;return gross-costs}
+function addTrade(data){let t={id:Date.now()+Math.floor(Math.random()*1000),symbol:data.symbol||'XAUUSD',side:data.side,entry:+data.entry,lots:+data.lots,sl:data.sl?+data.sl:null,tp:data.tp?+data.tp:null,commission:+data.commission||0,spread:+data.spread||0,opened:stamp(),exit:null,closedAt:null,pnl:null,status:'OPEN',source:data.source||'MANUAL'};state.trades.push(t);save();render();return t}
+function closeTrade(id,price){let t=state.trades.find(x=>x.id===id&&x.status==='OPEN');if(!t||!Number.isFinite(price)||price<=0)return alert('شناسه یا قیمت خروج معتبر نیست.');t.exit=price;t.closedAt=stamp();t.pnl=calcPnl(t,price);t.status='CLOSED';save();render()}
+window.quickClose=id=>{let p=prompt('قیمت خروج XAUUSD را وارد کنید:');if(p!==null)closeTrade(id,Number(p))};
+$('openTrade').onclick=()=>{let entry=+$('entry').value,lots=+$('lots').value;if(!(entry>0&&lots>0))return alert('قیمت ورود و حجم لات را معتبر وارد کنید.');addTrade({symbol:$('symbol').value,side:$('side').value,entry,lots,sl:$('sl').value,tp:$('tp').value,commission:$('commission').value,spread:$('spread').value});$('entry').value='';alert('معامله مجازی ثبت شد.');};
+$('closeTrade').onclick=()=>closeTrade(+$('closeId').value,+$('manualExit').value);
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===b.dataset.page));if(b.dataset.page==='dashboard')drawChart()});
+$('saveSettings').onclick=()=>{let v=+$('initialBalance').value,c=+$('contractValue').value;if(v<=0||c<=0)return alert('مقادیر باید بیشتر از صفر باشند.');state.initial=v;state.contract=c;save();render();alert('تنظیمات ذخیره شد.')};
+$('resetAccount').onclick=()=>{if(confirm('همه معاملات و داده‌های این حساب حذف شوند؟ ابتدا از تاریخچه پشتیبان بگیرید.')){state.trades=[];state.initial=+$('initialBalance').value||10000;save();render()}};
+$('clearHistory').onclick=()=>{if(confirm('تمام تاریخچه معاملات حذف شود؟ این کار قابل بازگشت نیست.')){state.trades=[];save();render()}};
+function download(name,content,type){let a=document.createElement('a'),u=URL.createObjectURL(new Blob([content],{type}));a.href=u;a.download=name;a.click();URL.revokeObjectURL(u)}
+$('exportJson').onclick=()=>download('gold-master-backup.json',JSON.stringify(state,null,2),'application/json');
+$('exportCsv').onclick=()=>{let rows=[['id','symbol','side','entry','exit','lots','opened','closedAt','pnl','status'],...state.trades.map(t=>[t.id,t.symbol,t.side,t.entry,t.exit??'',t.lots,t.opened,t.closedAt??'',t.pnl??'',t.status])];download('gold-master-history.csv','\ufeff'+rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n'),'text/csv;charset=utf-8')};
+function parseCSV(text){let lines=text.replace(/^\uFEFF/,'').trim().split(/\r?\n/);if(lines.length<2)throw Error('فایل باید سرستون و حداقل یک ردیف داده داشته باشد.');let sep=lines[0].includes(';')?';':',';let heads=lines.shift().split(sep).map(x=>x.trim().toLowerCase().replace(/"/g,''));let ix=names=>heads.findIndex(h=>names.includes(h));let ci=ix(['close','c','قیمت پایانی']),ti=ix(['time','date','datetime','timestamp','تاریخ','زمان']);if(ci<0)throw Error('ستون close پیدا نشد.');let oi=ix(['open','o']),hi=ix(['high','h']),li=ix(['low','l']);let out=lines.map((line,i)=>{let a=line.split(sep).map(x=>x.trim().replace(/"/g,''));let num=j=>j<0?null:Number(a[j]);let close=num(ci);return {time:ti>=0?a[ti]:String(i+1),open:num(oi),high:num(hi),low:num(li),close}}).filter(x=>Number.isFinite(x.close)&&x.close>0);if(out.length<3)throw Error('داده معتبر کافی نیست.');return out}
+$('csvFile').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{state.candles=parseCSV(await f.text());save();render();$('chartNote').textContent='نمودار از داده‌های CSV واردشده رسم شده است.';alert(state.candles.length+' کندل بارگذاری شد.')}catch(err){alert(err.message)}};
+function ema(values,period){let k=2/(period+1),out=[];values.forEach((v,i)=>out.push(i? v*k+out[i-1]*(1-k):v));return out}
+function runBacktest(){let cs=state.candles;if(cs.length<30)return alert('ابتدا حداقل ۳۰ کندل تاریخی CSV وارد کنید.');let fast=+$('fastEma').value,slow=+$('slowEma').value;if(fast<2||slow<=fast)return alert('EMA کند باید بزرگ‌تر از EMA سریع باشد.');let closes=cs.map(c=>c.close),ef=ema(closes,fast),es=ema(closes,slow),balance=+$('btBalance').value,risk=+$('riskPct').value/100,slpct=+$('btSl').value/100,rr=+$('btRR').value,spread=+$('btSpread').value,comm=+$('btComm').value,peak=balance,maxdd=0,pos=null,trades=[];
+for(let i=Math.max(slow,2);i<cs.length;i++){let prev=ef[i-1]-es[i-1],curr=ef[i]-es[i],signal=prev<=0&&curr>0?'BUY':prev>=0&&curr<0?'SELL':null,p=cs[i].close;
+ if(pos){let exit=null,reason='';if(pos.side==='BUY'){if(p<=pos.sl){exit=pos.sl;reason='Stop Loss'}else if(p>=pos.tp){exit=pos.tp;reason='Take Profit'}else if(signal==='SELL'){exit=p;reason='Opposite Signal'}}else{if(p>=pos.sl){exit=pos.sl;reason='Stop Loss'}else if(p<=pos.tp){exit=pos.tp;reason='Take Profit'}else if(signal==='BUY'){exit=p;reason='Opposite Signal'}}
+ if(exit!==null){let pnl=(exit-pos.entry)*(pos.side==='BUY'?1:-1)*pos.lots*state.contract-spread*pos.lots*state.contract-comm*pos.lots*2;balance+=pnl;trades.push({...pos,exit,pnl,reason});pos=null;}}
+ if(!pos&&signal){let riskD=p*slpct,stop=signal==='BUY'?p-riskD:p+riskD,target=signal==='BUY'?p+riskD*rr:p-riskD*rr,amount=balance*risk,lots=amount/(riskD*state.contract);if(Number.isFinite(lots)&&lots>0)pos={side:signal,entry:p,sl:stop,tp:target,lots,time:cs[i].time};}
+ peak=Math.max(peak,balance);maxdd=Math.max(maxdd,(peak-balance)/peak*100);
+}
+if(pos){let p=closes.at(-1),pnl=(p-pos.entry)*(pos.side==='BUY'?1:-1)*pos.lots*state.contract-spread*pos.lots*state.contract-comm*pos.lots*2;balance+=pnl;trades.push({...pos,exit:p,pnl,reason:'End of data'})}
+let wins=trades.filter(t=>t.pnl>0),loss=trades.filter(t=>t.pnl<0),gw=wins.reduce((s,t)=>s+t.pnl,0),gl=Math.abs(loss.reduce((s,t)=>s+t.pnl,0)),total=balance-(+$('btBalance').value);btTrades=trades;
+$('btResults').classList.remove('hidden');$('btNet').textContent=money(total);$('btNet').className='value '+(total>=0?'greenText':'redText');$('btWin').textContent=(trades.length?wins.length/trades.length*100:0).toFixed(1)+'%';$('btTrades').textContent=trades.length;$('btDd').textContent=maxdd.toFixed(2)+'%';$('btPf').textContent=gl? (gw/gl).toFixed(2):(gw?'∞':'—');$('btFinal').textContent=money(balance);$('btBody').innerHTML=trades.slice().reverse().map(t=>`<tr><td>${t.side}</td><td>${fmt(t.entry)}</td><td>${fmt(t.exit)}</td><td class="${t.pnl>=0?'greenText':'redText'}">${money(t.pnl)}</td><td>${t.reason}</td></tr>`).join('');}
+$('runBacktest').onclick=runBacktest;
+$('saveBacktestTrades').onclick=()=>{if(!btTrades.length)return alert('ابتدا بک‌تست را اجرا کنید.');btTrades.forEach(t=>{let x={id:Date.now()+Math.floor(Math.random()*1e6),symbol:'XAUUSD',side:t.side,entry:t.entry,lots:t.lots,sl:t.sl,tp:t.tp,commission:+$('btComm').value,spread:+$('btSpread').value,opened:String(t.time),exit:t.exit,closedAt:'Backtest',pnl:t.pnl,status:'CLOSED',source:'BACKTEST'};state.trades.push(x)});save();render();alert('معاملات بک‌تست به تاریخچه اضافه شدند.')};
+function drawChart(){let c=$('chart'),ctx=c.getContext('2d'),w=c.clientWidth,h=c.clientHeight,dpr=window.devicePixelRatio||1;c.width=w*dpr;c.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);let data=state.candles.slice(-180);if(!data.length){ctx.fillStyle='#9aacc3';ctx.font='12px sans-serif';ctx.textAlign='center';ctx.fillText('برای رسم نمودار، داده تاریخی CSV وارد کنید',w/2,h/2);return}let vals=data.map(x=>x.close),min=Math.min(...vals),max=Math.max(...vals),pad=22; if(max===min)max=min+1;ctx.strokeStyle='#293b53';ctx.lineWidth=1;for(let i=0;i<4;i++){let y=pad+(h-2*pad)*i/3;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke()}ctx.strokeStyle='#e7b84b';ctx.lineWidth=2;ctx.beginPath();vals.forEach((v,i)=>{let x=i/(vals.length-1)*w,y=h-pad-(v-min)/(max-min)*(h-2*pad);i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.stroke();ctx.fillStyle='#9aacc3';ctx.font='10px sans-serif';ctx.textAlign='left';ctx.fillText(max.toFixed(2),5,12);ctx.fillText(min.toFixed(2),5,h-5)}
+window.addEventListener('resize',drawChart);
+load();$('initialBalance').value=state.initial;$('contractValue').value=state.contract;render();
+</script></body></html>
