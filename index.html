@@ -1,77 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#101827">
-<link rel="manifest" href="manifest.webmanifest">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GOLD MASTER AI</title>
-<style>
-:root{--bg:#0b1220;--panel:#121d2e;--panel2:#18263a;--line:#293950;--text:#eef4ff;--muted:#9eb0c8;--gold:#e7b84b;--green:#37c98a;--red:#ff6b75;--blue:#77aaff}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#111d30,#09111d);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
-main{max-width:520px;margin:auto;padding:18px 15px 34px}
-header{display:flex;align-items:center;justify-content:space-between;margin:8px 0 18px}
-.brand{font-weight:900;letter-spacing:.8px;color:var(--gold);font-size:20px}.sub{font-size:11px;color:var(--muted);margin-top:3px}
-.pill{border:1px solid #6a5527;color:var(--gold);border-radius:20px;padding:6px 10px;font-size:11px}
-.notice{background:#352a16;border:1px solid #715624;color:#ffe2a1;padding:11px 12px;border-radius:13px;font-size:12px;line-height:1.8;margin-bottom:14px}
-.card{background:linear-gradient(145deg,var(--panel),#101a29);border:1px solid var(--line);border-radius:18px;padding:15px;margin:12px 0;box-shadow:0 8px 24px #0003}
-.label{font-size:12px;color:var(--muted)}.big{font-size:27px;font-weight:800;margin-top:5px}.gold{color:var(--gold)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{background:var(--panel2);border-radius:13px;padding:12px}.metric strong{display:block;font-size:18px;margin-top:5px}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
-button{border:0;border-radius:13px;padding:14px;font-weight:800;font-size:15px;color:#07111d;background:var(--gold)}
-button.stop{background:#34445a;color:#eaf1fb}button:disabled{opacity:.45}
-.status{display:flex;align-items:center;gap:8px;font-size:13px}.dot{width:9px;height:9px;border-radius:50%;background:var(--red)}.dot.on{background:var(--green);box-shadow:0 0 10px #37c98a}
-.signal{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding:12px;background:var(--panel2);border-radius:12px}
-.tag{padding:5px 9px;border-radius:9px;font-size:12px;font-weight:800}.buy{background:#123d31;color:#6ee4b2}.sell{background:#48232b;color:#ff9ba2}.wait{background:#3b3522;color:#f4d47b}
-.row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #293950;font-size:13px}.row:last-child{border:0}
-.small{font-size:11px;color:var(--muted);line-height:1.8}.foot{text-align:center;color:#7f91aa;font-size:10px;margin-top:18px}
-</style>
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
 </head>
 <body>
-<main>
-<header><div><div class="brand">GOLD MASTER AI</div><div class="sub">پنل آموزشی شبیه‌ساز طلا</div></div><div class="pill">DEMO ONLY</div></header>
-<div class="notice">این نسخه فقط برای آموزش و تمرین با معاملات مجازی است؛ به MT5 یا بروکر وصل نیست و هیچ سفارش واقعی ارسال نمی‌کند.</div>
-<section class="card">
- <div class="status"><span id="dot" class="dot"></span><span id="status">ربات متوقف است</span></div>
- <div class="actions"><button id="start">▶ شروع شبیه‌سازی</button><button id="stop" class="stop" disabled>■ توقف</button></div>
- <div class="small">با شروع، برنامه داده‌های نمونه را تغییر می‌دهد و نتیجه معاملات فرضی را ثبت می‌کند.</div>
-</section>
-<section class="grid">
- <div class="metric"><div class="label">موجودی مجازی</div><strong id="balance">$10,000.00</strong></div>
- <div class="metric"><div class="label">سود/زیان مجازی</div><strong id="pnl">$0.00</strong></div>
- <div class="metric"><div class="label">قیمت نمونه XAUUSD</div><strong id="price" class="gold">2,350.00</strong></div>
- <div class="metric"><div class="label">معاملات ثبت‌شده</div><strong id="count">0</strong></div>
-</section>
-<section class="card">
- <div class="label">آخرین وضعیت شبیه‌ساز</div>
- <div class="signal"><div><div style="font-weight:800">XAUUSD · M1</div><div class="small" id="reason">برای شروع، دکمه شروع را بزن.</div></div><span id="signal" class="tag wait">WAIT</span></div>
-</section>
-<section class="card">
- <div style="font-weight:800;margin-bottom:8px">گزارش معاملات مجازی</div>
- <div id="log" class="small">هنوز معامله آزمایشی ثبت نشده است.</div>
-</section>
-<div class="foot">GOLD MASTER AI · نسخه آزمایشی 0.1 · بدون اتصال به حساب معاملاتی</div>
-</main>
-<script>
-const $=id=>document.getElementById(id);
-let running=false,timer=null,balance=10000,pnl=0,count=0,price=2350,open=null;
-const money=n=>'$'+n.toFixed(2);
-function render(){ $('balance').textContent=money(balance);$('pnl').textContent=money(pnl);$('pnl').style.color=pnl>=0?'#37c98a':'#ff6b75';$('price').textContent=price.toFixed(2);$('count').textContent=count; }
-function log(line){const el=$('log');if(el.textContent.includes('هنوز معامله'))el.textContent='';const d=document.createElement('div');d.className='row';d.textContent=line;el.prepend(d);}
-function tick(){
- price += (Math.random()-.49)*2.2;
- price=Math.max(2200,Math.min(2500,price));
- const r=Math.random();
- let side=r>.68?'BUY':r<.30?'SELL':'WAIT';
- $('signal').textContent=side;$('signal').className='tag '+(side==='BUY'?'buy':side==='SELL'?'sell':'wait');
- $('reason').textContent='سیگنال ساختگی برای تمرین رابط کاربری؛ تحلیل بازار واقعی نیست.';
- if(open){let move=(price-open.entry)*(open.side==='BUY'?1:-1);if(Math.abs(move)>2.8 || Math.random()>.93){let result=move*2;balance+=result;pnl+=result;count++;log(`${open.side} مجازی | نتیجه ${money(result)} | قیمت خروج ${price.toFixed(2)}`);open=null;}}
- if(!open && side!=='WAIT'){open={side,entry:price};log(`${side} مجازی باز شد | قیمت ${price.toFixed(2)}`);}
- render();
-}
-$('start').onclick=()=>{if(running)return;running=true;$('dot').classList.add('on');$('status').textContent='شبیه‌سازی فعال است';$('start').disabled=true;$('stop').disabled=false;tick();timer=setInterval(tick,2500);};
-$('stop').onclick=()=>{running=false;clearInterval(timer);timer=null;$('dot').classList.remove('on');$('status').textContent='شبیه‌سازی متوقف شد';$('start').disabled=false;$('stop').disabled=true;$('signal').textContent='STOP';$('signal').className='tag wait';};
-render();
-if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
-</script>
-</body></html>
+
+<header>
+  <h1>GOLD MASTER AI</h1>
+  <span class="badge">DEMO</span>
+</header>
+
+<div class="stats">
+  <div class="stat"><span>موجودی مجازی</span><strong id="balance">$10,000.00</strong></div>
+  <div class="stat"><span>سود/زیان</span><strong id="pnl">$0.00</strong></div>
+  <div class="stat"><span>قیمت XAUUSD</span><strong id="price">—</strong></div>
+  <div class="stat"><span>معاملات</span><strong id="trades-count">0</strong></div>
+</div>
+
+<div class="controls">
+  <button id="start-btn">▶ شروع</button>
+  <button id="stop-btn" disabled>⏹ توقف</button>
+  <span id="status" class="status">WAIT</span>
+</div>
+
+<div id="chart-container"></div>
+
+<h2>گزارش معاملات مجازی</h2>
+<table id="trades-table">
+  <thead>
+    <tr><th>#</th><th>نوع</th><th>ورود</th><th>خروج</th><th>سود/زیان</th><th>وضعیت</th></tr>
+  </thead>
+  <tbody id="trades-body">
+    <tr><td colspan="6" class="empty">هنوز معامله‌ای ثبت نشده</td></tr>
+  </tbody>
+</table>
+
+<footer>GOLD MASTER AI · نسخه آزمایشی 0.1</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
